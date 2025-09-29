@@ -8,6 +8,7 @@ import {
   Revenue,
 } from './definitions';
 import { formatCurrency } from './utils';
+import { log } from 'console';
 
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
 
@@ -144,7 +145,7 @@ export async function fetchInvoicesPages(query: string) {
 
 export async function fetchInvoiceById(id: string) {
   try {
-    const data = await sql<InvoiceForm[]>`
+      const data = await sql<InvoiceForm[]>`
       SELECT
         invoices.id,
         invoices.customer_id,
@@ -154,13 +155,14 @@ export async function fetchInvoiceById(id: string) {
       WHERE invoices.id = ${id};
     `;
 
-    const invoice = data.map((invoice) => ({
-      ...invoice,
-      // Convert amount from cents to dollars
-      amount: invoice.amount / 100,
-    }));
+      const invoice = data.map((invoice) => ({
+          ...invoice,
+          // Convert amount from cents to dollars
+          amount: invoice.amount / 100,
+      }));
 
-    return invoice[0];
+      // console.log('INVOICE:', invoice);
+      return invoice[0];
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch invoice.');
