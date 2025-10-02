@@ -12,6 +12,8 @@ A starter dashboard application built with [Next.js](https://nextjs.org/) App Ro
 - **Component-based UI**: Reusable components and skeleton loaders.
 - **Responsive Design**: Mobile and desktop layouts.
 - **Modern Tooling**: ESLint, Prettier, and more.
+- **Server Actions**: Uses Next.js [Server Actions](https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions) for form handling.
+- **Accessible Forms**: Forms include proper labels, error handling, and ARIA attributes.
 
 ## Project Structure
 
@@ -19,12 +21,14 @@ A starter dashboard application built with [Next.js](https://nextjs.org/) App Ro
 .
 ├── app/                  # Main application routes and components
 │   ├── dashboard/        # Dashboard pages, logic, and UI
-│   ├── ui/               # Reusable UI components (e.g., AcmeLogo, skeletons)
-│   ├── lib/              # Utility functions and data fetching logic
+│   ├── ui/               # Reusable UI components (e.g., AcmeLogo, skeletons, forms)
+│   │   └── invoices/     # Invoice-related UI components (e.g., create-form.tsx)
+│   ├── lib/              # Utility functions, server actions, and data fetching logic
 │   └── page.tsx          # Landing page
 ├── public/               # Static assets (images, favicon, etc.)
 ├── styles/               # Global styles (if any)
 ├── tailwind.config.ts    # Tailwind CSS configuration
+├── postcss.config.js     # PostCSS configuration
 ├── next.config.ts        # Next.js configuration
 ├── package.json          # Project metadata and scripts
 ├── tsconfig.json         # TypeScript configuration
@@ -74,7 +78,7 @@ Copy `.env.example` to `.env` and fill in required values.
 - `start`: Start production server
 - `lint`: Run ESLint
 
-## Dependencies
+## Key Technologies
 
 - [Next.js](https://nextjs.org/)
 - [React](https://react.dev/)
@@ -85,6 +89,12 @@ Copy `.env.example` to `.env` and fill in required values.
 - [@heroicons/react](https://github.com/tailwindlabs/heroicons)
 - [zod](https://zod.dev/)
 
+## Notes
+
+- **Forms**: The app uses [Server Actions](https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions) for form submissions (see `app/ui/invoices/create-form.tsx` and `app/lib/actions.ts`). Ensure your Next.js version supports this feature.
+- **Accessibility**: Forms include ARIA attributes and error messaging for improved accessibility.
+- **Customization**: Update the `app/ui/` and `app/lib/` directories to add or modify UI and business logic.
+
 ## Learn More
 
 - [Next.js Documentation](https://nextjs.org/docs)
@@ -92,5 +102,3 @@ Copy `.env.example` to `.env` and fill in required values.
 - [Course Curriculum](https://nextjs.org/learn)
 
 ---
-
-This project is based on the [Next.js App Router Course](https://nextjs.org/learn).
